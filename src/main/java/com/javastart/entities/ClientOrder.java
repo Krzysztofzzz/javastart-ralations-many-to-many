@@ -45,6 +45,7 @@ public class ClientOrder {
 
     public void addProduct(Product product) {
         products.add(product);
+        product.addOrder(this);
     }
 
     @Override

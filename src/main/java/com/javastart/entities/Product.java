@@ -1,9 +1,8 @@
 package com.javastart.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -13,6 +12,8 @@ public class Product {
     private String name;
     private Double price;
     private String details;
+    @ManyToMany(mappedBy = "products")
+    private List<ClientOrder> orders = new ArrayList<>();
 
     public Product() {
     }
@@ -21,6 +22,18 @@ public class Product {
         this.name = name;
         this.price = price;
         this.details = details;
+    }
+
+    public void addOrder(ClientOrder order){
+        orders.add(order);
+    }
+
+    public List<ClientOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<ClientOrder> orders) {
+        this.orders = orders;
     }
 
     public Long getId() {
